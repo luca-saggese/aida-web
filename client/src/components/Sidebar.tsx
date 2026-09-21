@@ -8,7 +8,6 @@ import {
   ExternalLink,
   PanelLeftClose,
   ChevronUp,
-  LogOut,
 } from 'lucide-react';
 import { useAuthStore } from '../stores/authStore';
 import './Sidebar.css';
@@ -47,7 +46,7 @@ export function Sidebar({ collapsed, onToggleCollapse }: { collapsed: boolean; o
     <aside className={`sidebar${collapsed ? ' collapsed' : ''}`}>
       <div className="sidebar-top">
         <div className="brand">
-          <div className="brand-mark">TS</div>
+          <div className="brand-mark">GT</div>
           {!collapsed && <span className="brand-name">GOTRAXX AI</span>}
         </div>
         <button className="icon-button collapse-btn" onClick={onToggleCollapse} aria-label="Collapse sidebar">

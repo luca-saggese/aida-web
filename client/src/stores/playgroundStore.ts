@@ -89,9 +89,8 @@ export const usePlaygroundStore = create<PlaygroundState>((set, get) => ({
   expandedAnswerIds: new Set<string>(),
 
   setStateText(text) {
-    let value: unknown = get().stateValue;
     try {
-      value = JSON.parse(text);
+      const value: unknown = JSON.parse(text);
       set({ stateText: text, stateValue: value, lastValidState: value });
     } catch {
       set({ stateText: text });
@@ -103,9 +102,8 @@ export const usePlaygroundStore = create<PlaygroundState>((set, get) => ({
   },
 
   setQuestionsText(text) {
-    let questions: Record<string, Question> = get().questionsValue;
     try {
-      questions = JSON.parse(text) as Record<string, Question>;
+      const questions = JSON.parse(text) as Record<string, Question>;
       set({ questionsText: text, questionsValue: questions, lastValidQuestions: questions });
     } catch {
       set({ questionsText: text });

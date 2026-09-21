@@ -58,7 +58,7 @@ export function RegisterPage() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="brand-lockup">
-          <span className="mark">TS</span>
+          <span className="mark">GT</span>
           <span className="name">GOTRAXX AI</span>
         </div>
         <h1>Create your account</h1>

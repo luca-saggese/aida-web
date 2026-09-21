@@ -13,7 +13,5 @@ const shareSchema = new Schema(
   { timestamps: true },
 );
 
-shareSchema.index({ shareId: 1 }, { unique: true });
-
 export type Share = InferSchemaType<typeof shareSchema> & { _id: import('mongoose').Types.ObjectId };
 export const ShareModel = model('Share', shareSchema);

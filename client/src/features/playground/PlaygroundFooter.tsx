@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react';
 import { usePlaygroundStore } from '../../stores/playgroundStore';
-import { validateQuestions, jsonIsValid } from './validation';
+import { jsonIsValid } from './validation';
 import { api, ApiError } from '../../lib/api';
 
 const AVAILABLE_MODELS = ['aida-latest', 'aida-preview', 'aida-1.13.0'];

@@ -43,7 +43,7 @@ export function ResetPasswordPage() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="brand-lockup">
-          <span className="mark">TS</span>
+          <span className="mark">GT</span>
           <span className="name">GOTRAXX AI</span>
         </div>
         <h1>Choose a new password</h1>

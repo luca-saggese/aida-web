@@ -23,12 +23,6 @@ const TRAFFIC_LABELS: Record<TrafficSource, string> = {
   api: 'API',
 };
 
-function dateRangeDays(value: string): number {
-  if (value === '7') return 7;
-  if (value === '90') return 90;
-  return 30;
-}
-
 function useUsageQuery(params: { from: string; to: string; granularity: Granularity; traffic: TrafficSource }) {
   return useQuery({
     queryKey: ['usage', params],
@@ -52,8 +46,6 @@ function SigFigs(n: number): string {
   }
   return n.toLocaleString();
 }
-
-let uid = 0;
 
 export function UsagePage() {
   const [traffic, setTraffic] = useState<TrafficSource>('all');

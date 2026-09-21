@@ -28,7 +28,7 @@ export async function registerUser(input: { name: string; email: string; passwor
   return user;
 }
 
-export function makeEmailVerificationToken(userId: string): string {
+export function makeEmailVerificationToken(): string {
   return randomBytes(32).toString('hex');
 }
 
@@ -37,7 +37,7 @@ export function makeEmailVerificationToken(userId: string): string {
  * deliver to the user (or return in the API in dev when SMTP is unset).
  */
 export async function setEmailVerificationToken(userId: string): Promise<string> {
-  const raw = makeEmailVerificationToken(userId);
+  const raw = makeEmailVerificationToken();
   await UserModel.updateOne(
     { _id: userId },
     {

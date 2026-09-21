@@ -71,12 +71,3 @@ export async function systemOne(req: Request, res: Response): Promise<void> {
 
   res.status(200).json(response);
 }
-
-export async function publicSystemOneWrapper(req: Request, res: Response) {
-  try {
-    await systemOne(req, res);
-  } catch (err) {
-    // Route errors through central handler.
-    throw err;
-  }
-}

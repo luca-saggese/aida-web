@@ -113,7 +113,6 @@ function Summary({ answer }: { answer: Answer }) {
       </span>
     );
   }
-  const probZero = (answer as ScoreAnswer).probabilities['0'] ?? 0;
   return (
     <span className="sum-score">
       {answer.score.toFixed(2)} · conf {Math.round(answer.confidence * 100)}%

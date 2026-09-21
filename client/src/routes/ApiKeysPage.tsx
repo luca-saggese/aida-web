@@ -19,7 +19,6 @@ function formatDate(iso: string): string {
 
 export function ApiKeysPage() {
   const queryClient = useQueryClient();
-  const user = useAuthStore((s) => s.user);
   const [search, setSearch] = useState('');
   const [sortKey, setSortKey] = useState<SortKey>('name');
   const [sortDir, setSortDir] = useState<SortDir>('asc');

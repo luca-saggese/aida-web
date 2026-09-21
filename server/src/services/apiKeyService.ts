@@ -1,6 +1,6 @@
 import { ApiKeyModel } from '../models/index.js';
 import { env } from '../config/env.js';
-import { generateToken, hmacKey, randomBytesHex } from '../utils/tokens.js';
+import { hmacKey, randomBytesHex } from '../utils/tokens.js';
 import { notFound } from '../utils/errors.js';
 import type { Types } from 'mongoose';
 

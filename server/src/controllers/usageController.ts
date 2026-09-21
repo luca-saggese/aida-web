@@ -35,14 +35,13 @@ export async function getUsage(req: AuthedRequest, res: Response): Promise<void>
 
   const now = new Date();
   let from: Date;
-  let to: Date;
+  const to = q.to ? new Date(q.to) : now;
 
   if (q.from) {
     from = new Date(q.from);
   } else {
     from = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
   }
-  to = q.to ? new Date(q.to) : now;
 
   const filter: Record<string, unknown> = {
     organizationId: req.organization._id,

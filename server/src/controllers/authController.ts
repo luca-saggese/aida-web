@@ -6,7 +6,6 @@ import {
   setEmailVerificationToken,
   verifyEmail,
   login,
-  primaryOrganization,
   issueTokens,
   ensureOrganization,
   ensureOwnerMembership,

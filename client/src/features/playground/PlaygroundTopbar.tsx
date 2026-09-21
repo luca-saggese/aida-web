@@ -1,4 +1,4 @@
-import { FlaskConical, Link2, Rows2, Columns2, X } from 'lucide-react';
+import { FlaskConical, Link2, Rows2, Columns2 } from 'lucide-react';
 import { usePlaygroundStore } from '../../stores/playgroundStore';
 import { api } from '../../lib/api';
 import './playground.css';
