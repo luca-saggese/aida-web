@@ -6,7 +6,6 @@ import {
   ChartNoAxesColumnIncreasing,
   KeyRound,
   BookOpen,
-  ExternalLink,
   PanelLeftClose,
   PanelLeftOpen,
   ChevronUp,
@@ -21,6 +20,7 @@ const NAV_ITEMS = [
   { to: '/playground', label: 'Playground', icon: FlaskConical },
   { to: '/usage', label: 'Usage', icon: ChartNoAxesColumnIncreasing },
   { to: '/api-keys', label: 'API Keys', icon: KeyRound },
+  { to: '/docs', label: 'Documentation', icon: BookOpen },
 ];
 
 function initials(name: string): string {
@@ -81,12 +81,6 @@ export function Sidebar({ collapsed, onToggleCollapse }: { collapsed: boolean; o
               <span className="nav-label">{item.label}</span>
             </NavLink>
           ))}
-
-          <a className="nav-item" href="https://docs.gotraxx.ai" target="_blank" rel="noreferrer">
-            <BookOpen size={21} strokeWidth={1.7} />
-            <span className="nav-label">Documentation</span>
-            <ExternalLink size={15} strokeWidth={1.7} className="nav-ext" />
-          </a>
         </nav>
       )}
 

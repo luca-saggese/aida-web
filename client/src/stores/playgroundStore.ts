@@ -63,6 +63,7 @@ export interface PlaygroundState {
   loadPreset: (state: unknown, questions: Record<string, Question>) => void;
   addQuestion: (key: string, q: Question) => void;
   removeQuestion: (key: string) => void;
+  renameQuestion: (oldKey: string, newKey: string) => void;
   replaceQuestions: (questions: Record<string, Question>) => void;
 }
 
@@ -205,6 +206,16 @@ export const usePlaygroundStore = create<PlaygroundState>((set, get) => ({
   removeQuestion(key) {
     const questions = { ...get().questionsValue };
     delete questions[key];
+    set({ questionsValue: questions, lastValidQuestions: questions, questionsText: serialize(questions) });
+  },
+
+  renameQuestion(oldKey, newKey) {
+    const trimmed = newKey.trim();
+    if (!trimmed || trimmed === oldKey) return;
+    const questions = { ...get().questionsValue };
+    if (questions[trimmed]) return; // avoid collisions
+    questions[trimmed] = questions[oldKey];
+    delete questions[oldKey];
     set({ questionsValue: questions, lastValidQuestions: questions, questionsText: serialize(questions) });
   },
 

@@ -2,76 +2,18 @@ import { useState } from 'react';
 import { X } from 'lucide-react';
 import { usePlaygroundStore } from '../../stores/playgroundStore';
 import type { Question } from '../../types';
+import examples from './examples.json';
 import './rail.css';
 
-const LESSONS: {
-  badge: 'Noul' | 'Choice' | 'Score';
-  title: string;
-  subtitle: string;
-  emoji: string;
-  state: unknown;
-  questions: Record<string, Question>;
-}[] = [
-  {
-    badge: 'Noul',
-    title: 'Is hotdog a sandwich?',
-    subtitle: 'Settle the everlasting debate',
-    emoji: '🌭',
-    state: { subject: 'A hotdog placed between two slices of bread' },
-    questions: {
-      sandwich: { type: 'noul', instructions: 'Is the subject a sandwich?', criteria: { true: 'Meets sandwich criteria', false: 'Does not meet sandwich criteria' } },
-    },
-  },
-  {
-    badge: 'Choice',
-    title: 'What color is the sky?',
-    subtitle: 'Go beyond blue',
-    emoji: '☀️',
-    state: { object: 'The sky on a clear day' },
-    questions: {
-      sky_color: {
-        type: 'choice',
-        instructions: "What color is the object's sky?",
-        criteria: { blue: 'A clear blue', gray: 'Overcast', orange: 'Sunset' },
-      },
-    },
-  },
-  {
-    badge: 'Score',
-    title: 'Can monkeys create art?',
-    subtitle: 'A real-life court case',
-    emoji: '📷',
-    state: { subject: 'A photograph taken by a monkey' },
-    questions: {
-      artistic: {
-        type: 'score',
-        instructions: 'How much artistic merit does the subject have?',
-        criteria: ['None', 'Some', 'A lot'],
-      },
-    },
-  },
-];
+type Lesson = (typeof examples.lessons)[number];
+type UseCase = (typeof examples.useCases)[number];
 
-const USE_CASES: { title: string; subtitle: string; state: unknown; questions: Record<string, Question> }[] = [
-  {
-    title: 'Resumé screening',
-    subtitle: "Assess an engineering candidate's fit",
-    state: { resume: 'Has tech profile' },
-    questions: { fit: { type: 'noul', instructions: 'Are they a good fit?', criteria: { true: 'Yes', false: 'No' } } },
-  },
-  {
-    title: 'Support agent audit',
-    subtitle: "Audit a customer support agent's chat session",
-    state: { chat: 'Chat transcript' },
-    questions: { helpful: { type: 'choice', instructions: 'How helpful was the agent?', criteria: { excellent: '', good: '', poor: '' } } },
-  },
-  {
-    title: 'Helpdesk ticket triage',
-    subtitle: 'Route a ticket to the right team',
-    state: { ticket: 'Ticket text' },
-    questions: { team: { type: 'score', instructions: 'Which team?', criteria: ['Billing', 'Tech', 'Sales'] } },
-  },
-];
+const LESSONS: Lesson[] = examples.lessons;
+const USE_CASES: UseCase[] = examples.useCases;
+
+function loadQuestions(questions: Record<string, unknown>): Record<string, Question> {
+  return questions as Record<string, Question>;
+}
 
 export function ExampleRail() {
   const setExamplesOpen = usePlaygroundStore((s) => s.setExamplesOpen);
@@ -94,7 +36,7 @@ export function ExampleRail() {
           <button
             key={l.badge}
             className="lesson-card"
-            onClick={() => loadPreset(l.state, l.questions)}
+            onClick={() => loadPreset(l.state, loadQuestions(l.questions))}
             aria-label={`Load ${l.badge} lesson`}
           >
             <span className="lesson-badge">{l.badge}</span>
@@ -115,7 +57,7 @@ export function ExampleRail() {
             className={`real-case${selectedReal === idx ? ' selected' : ''}`}
             onClick={() => {
               setSelectedReal(idx);
-              loadPreset(c.state, c.questions);
+              loadPreset(c.state, loadQuestions(c.questions));
             }}
           >
             <span className="real-case-title">{c.title}</span>

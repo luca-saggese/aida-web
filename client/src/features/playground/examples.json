@@ -1,0 +1,174 @@
+{
+  "lessons": [
+    {
+      "badge": "Noul",
+      "title": "Is hotdog a sandwich?",
+      "subtitle": "Settle the everlasting debate",
+      "emoji": "🌭",
+      "state": {
+        "message": "A hotdog placed between two slices of bread. Is this combination of sausage and bun considered a sandwich, or does its definition sit outside the classic sandwich boundaries?"
+      },
+      "questions": {
+        "sandwich": {
+          "type": "noul",
+          "instructions": "Is the subject a sandwich?",
+          "criteria": {
+            "true": "Meets sandwich criteria",
+            "false": "Does not meet sandwich criteria"
+          }
+        }
+      }
+    },
+    {
+      "badge": "Choice",
+      "title": "What color is the sky?",
+      "subtitle": "Go beyond blue",
+      "emoji": "☀️",
+      "state": {
+        "message": "The sky on a clear and sunny day, with no clouds in sight and a brilliant blue tone across the horizon."
+      },
+      "questions": {
+        "sky_color": {
+          "type": "choice",
+          "instructions": "What color is the sky's appearance in the described scene?",
+          "criteria": {
+            "blue": "A clear blue",
+            "gray": "Overcast",
+            "orange": "Sunset"
+          }
+        }
+      }
+    },
+    {
+      "badge": "Score",
+      "title": "Can monkeys create art?",
+      "subtitle": "A real-life court case",
+      "emoji": "📷",
+      "state": {
+        "message": "A photograph taken spontaneously by a monkey pressing the shutter of a camera left unattended in the forest. The resulting image followed an animal that later went to court over who owns the copyright."
+      },
+      "questions": {
+        "artistic": {
+          "type": "score",
+          "instructions": "How much artistic merit does the subject have?",
+          "criteria": ["None", "Some", "A lot"]
+        }
+      }
+    }
+  ],
+  "useCases": [
+    {
+      "title": "Resumé screening",
+      "subtitle": "Assess an engineering candidate's fit",
+      "state": {
+        "message": "Maria Rossi has 6 years of experience as a backend engineer, primarily with Node.js and Go. She led the migration of a payments platform serving 2M users from a monolith to microservices. Strong knowledge of PostgreSQL, Redis, and Kubernetes. Previously at a fintech startup, she owned the API gateway and cut p95 latency by 40%. Looking for a senior backend role, remote-friendly, salary expectation around 90k. No public open-source contributions."
+      },
+      "questions": {
+        "fit": {
+          "type": "noul",
+          "instructions": "Is this candidate a strong fit for a senior backend engineering role?",
+          "criteria": {
+            "true": "Strong fit",
+            "false": "Poor fit"
+          }
+        },
+        "seniority": {
+          "type": "choice",
+          "instructions": "What seniority level does this candidate best match?",
+          "criteria": {
+            "junior": "Junior",
+            "mid": "Mid",
+            "senior": "Senior"
+          }
+        },
+        "microservices": {
+          "type": "noul",
+          "instructions": "Did the candidate demonstrate real microservices architecture experience?",
+          "criteria": {
+            "true": "Led a migration",
+            "false": "No evidence"
+          }
+        },
+        "salary_risk": {
+          "type": "noul",
+          "instructions": "Is the salary expectation within an acceptable range for the role?",
+          "criteria": {
+            "true": "Within range",
+            "false": "Over budget"
+          }
+        }
+      }
+    },
+    {
+      "title": "Support agent audit",
+      "subtitle": "Audit a customer support agent's chat session",
+      "state": {
+        "message": "Customer: \"I was charged twice for my subscription this month, can you fix it immediately?\"\nAgent: \"I understand, that must be frustrating. Let me check your account right away.\"\nCustomer: \"It says I'm on the premium plan but I only signed up for basic.\"\nAgent: \"I can see the issue now. You were upgraded to premium last week during a trial that auto-renewed. I'll refund the extra charge and downgrade you to basic.\"\nCustomer: \"Great, thanks for taking care of that quickly.\""
+      },
+      "questions": {
+        "empathy": {
+          "type": "choice",
+          "instructions": "How empathetic was the agent toward the customer?",
+          "criteria": {
+            "excellent": "Very empathetic",
+            "good": "Good",
+            "poor": "Cold or robotic"
+          }
+        },
+        "resolution": {
+          "type": "noul",
+          "instructions": "Did the agent resolve the customer issue successfully?",
+          "criteria": {
+            "true": "Issue resolved",
+            "false": "Not resolved"
+          }
+        },
+        "tone": {
+          "type": "choice",
+          "instructions": "How would you rate the overall tone of the conversation?",
+          "criteria": {
+            "professional": "Professional",
+            "neutral": "Neutral",
+            "unprofessional": "Unprofessional"
+          }
+        },
+        "clarity": {
+          "type": "score",
+          "instructions": "How clearly did the agent explain the cause and the fix?",
+          "criteria": ["Unclear", "Somewhat clear", "Very clear"]
+        }
+      }
+    },
+    {
+      "title": "Helpdesk ticket triage",
+      "subtitle": "Route a ticket to the right team",
+      "state": {
+        "message": "Ticket #4821: 'My invoice for June shows a charge of $240 but I only signed up for the standard plan at $120. This must be a billing error. Can someone from billing review this and issue a correction before my card is charged again?' Priority: high. Status: open."
+      },
+      "questions": {
+        "team": {
+          "type": "choice",
+          "instructions": "Which team should handle this ticket?",
+          "criteria": {
+            "billing": "Billing",
+            "tech": "Tech support",
+            "sales": "Sales"
+          }
+        },
+        "urgency": {
+          "type": "score",
+          "instructions": "How urgent is this ticket?",
+          "criteria": ["Low", "Medium", "High"]
+        },
+        "billing_issue": {
+          "type": "noul",
+          "instructions": "Is this a billing-related issue?",
+          "criteria": {
+            "true": "Billing issue",
+            "false": "Not billing"
+          }
+        }
+      }
+    }
+  ]
+}

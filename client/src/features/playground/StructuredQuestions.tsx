@@ -6,6 +6,7 @@ import { PrimitivePicker, AddQuestionButton } from './PrimitivePicker';
 
 function QuestionEditor({ id, q }: { id: string; q: Question }) {
   const removeQuestion = usePlaygroundStore((s) => s.removeQuestion);
+  const renameQuestion = usePlaygroundStore((s) => s.renameQuestion);
 
   const update = (patch: Partial<Question> & { criteria?: unknown }) => {
     const next = { ...q, ...patch } as Question;
@@ -20,8 +21,9 @@ function QuestionEditor({ id, q }: { id: string; q: Question }) {
         <input
           className="q-name-input"
           value={id}
-          readOnly
+          onChange={(e) => renameQuestion(id, e.target.value)}
           aria-label="Question name"
+          title="Click to rename"
         />
         <span className="q-badge">{key}</span>
         <button className="q-delete" onClick={() => removeQuestion(id)} aria-label="Delete question">

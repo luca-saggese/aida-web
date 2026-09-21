@@ -7,6 +7,7 @@ import { PlaygroundPage } from '../routes/PlaygroundPage';
 import { UsagePage } from '../routes/UsagePage';
 import { ApiKeysPage } from '../routes/ApiKeysPage';
 import { SettingsPage } from '../routes/SettingsPage';
+import { DocsPage } from '../routes/DocsPage';
 import { LoginPage } from '../features/auth/LoginPage';
 import { RegisterPage } from '../features/auth/RegisterPage';
 import { ConfirmEmailPage } from '../features/auth/ConfirmEmailPage';
@@ -49,6 +50,7 @@ export function App() {
         <Route path="usage" element={<UsagePage />} />
         <Route path="api-keys" element={<ApiKeysPage />} />
         <Route path="settings" element={<SettingsPage />} />
+        <Route path="docs" element={<DocsPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to={status === 'authenticated' ? '/' : '/login'} replace />} />
