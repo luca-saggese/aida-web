@@ -85,7 +85,7 @@ export function ExampleRail() {
         <button className="rail-hero-close" onClick={() => setExamplesOpen(false)} aria-label="Close examples">
           <X size={20} strokeWidth={1.7} />
         </button>
-        <h1 className="rail-hero-title">Learn to GoTraxx</h1>
+        <h1 className="rail-hero-title">Ask Aida</h1>
       </div>
 
       <div className="rail-section-label">WALKTHROUGH LESSONS</div>

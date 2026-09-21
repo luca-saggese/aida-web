@@ -2,11 +2,12 @@ import { CircleHelp } from 'lucide-react';
 import { usePlaygroundStore } from '../../stores/playgroundStore';
 import { JsonEditor } from '../../components/JsonEditor';
 import { QuestionsStructured } from './StructuredQuestions';
+import { QuestionsMenu } from './QuestionsMenu';
 import { jsonIsValid } from './validation';
 
 export function QuestionsPanel() {
-  const requestView = usePlaygroundStore((s) => s.requestView);
-  const setRequestView = usePlaygroundStore((s) => s.setRequestView);
+  const questionsView = usePlaygroundStore((s) => s.questionsView);
+  const setQuestionsView = usePlaygroundStore((s) => s.setQuestionsView);
   const questionsText = usePlaygroundStore((s) => s.questionsText);
   const validationIssues = usePlaygroundStore((s) => s.validationIssues);
   const setQuestionsValue = usePlaygroundStore((s) => s.setQuestionsValue);
@@ -34,17 +35,18 @@ export function QuestionsPanel() {
             {validationIssues.length}
           </div>
           <div className="view-toggle" role="group" aria-label="Questions editor mode">
-            <button className={requestView === 'structured' ? 'active' : ''} onClick={() => setRequestView('structured')}>
+            <button className={questionsView === 'structured' ? 'active' : ''} onClick={() => setQuestionsView('structured')}>
               structured
             </button>
-            <button className={requestView === 'json' ? 'active' : ''} onClick={() => setRequestView('json')}>
+            <button className={questionsView === 'json' ? 'active' : ''} onClick={() => setQuestionsView('json')}>
               {'</>'}
             </button>
           </div>
+          <QuestionsMenu />
         </div>
       </header>
       <div className={`editor-body${!jsonIsValid(questionsText) ? ' invalid' : ''}`}>
-        {requestView === 'json' ? (
+        {questionsView === 'json' ? (
           <JsonEditor
             value={questionsText}
             onChange={(v) => setQuestionsText(v)}

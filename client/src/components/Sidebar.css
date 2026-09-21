@@ -45,6 +45,16 @@
   height: 40px;
 }
 
+.sidebar.collapsed .sidebar-top {
+  justify-content: center;
+  padding: 20px 8px;
+}
+
+.sidebar.collapsed .collapse-btn {
+  width: 40px;
+  height: 40px;
+}
+
 .nav {
   display: flex;
   flex-direction: column;
@@ -146,4 +156,51 @@
 .account-chevron {
   margin-left: auto;
   color: var(--muted-2);
+}
+
+.account-menu {
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 6px;
+  z-index: 120;
+}
+
+.account-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+}
+
+.account-menu-item[data-highlighted] {
+  background: var(--surface-hover);
+}
+
+.account-menu-item svg {
+  color: var(--muted);
+}
+
+.account-menu-item.danger {
+  color: #c23535;
+}
+
+.account-menu-item.danger svg {
+  color: #c23535;
+}
+
+.account-menu-item.danger[data-highlighted] {
+  background: #fdecec;
+}
+
+.account-menu-sep {
+  height: 1px;
+  background: var(--border-soft);
+  margin: 6px 4px;
 }

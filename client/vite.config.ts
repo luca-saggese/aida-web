@@ -6,7 +6,9 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/api': {
+      // Note: use '/api/' (trailing slash) so client pages like /api-keys
+      // are NOT intercepted and forwarded to the backend.
+      '/api/': {
         target: 'http://localhost:4000',
         changeOrigin: true,
       },

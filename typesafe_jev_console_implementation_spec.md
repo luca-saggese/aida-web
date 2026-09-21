@@ -110,7 +110,7 @@ Taglie:
 | nav sidebar | 20–22 px | 400 |
 | page title piccolo (`Usage`, `API keys`, `Playground`) | 20–22 px | 400 |
 | section title (`State`, `Questions`) | 18–20 px | 400 |
-| large hero `Learn to GoTraxx` | 52–58 px | 400 |
+| large hero `Ask Aida` | 52–58 px | 400 |
 | table header | 14–16 px | 400 |
 | table cell | 17–19 px | 400 |
 | editor | 17–19 px | 400 mono |
@@ -430,11 +430,11 @@ Alto pannello:
 
 ```text
 EXAMPLE REQUESTS                                                ×
-Learn to GoTraxx
+Ask Aida
 ```
 
 - `EXAMPLE REQUESTS`: uppercase, tracking ampio, muted.
-- `Learn to GoTraxx`: 52–58 px.
+- `Ask Aida`: 52–58 px.
 - `×`: top-right con hit-area ~44 px.
 - click `×` chiude il rail e lascia più spazio all’editor [I].
 
@@ -1212,7 +1212,7 @@ Il layout deve essere rifinito con screenshot-diff, non considerare questi valor
 
 | Area | Stato | Rendering |
 |---|---|---|
-| Playground | empty | Learn to GoTraxx visibile; Run disabled |
+| Playground | empty | Ask Aida visibile; Run disabled |
 | Playground | editing valid | Run enabled |
 | Playground | JSON invalid | issue count >0; Run disabled |
 | Playground | running | blocca Run; conserva input |
@@ -1254,7 +1254,7 @@ Pur replicando il visual, mantenere semantics corrette:
 
 - topbar altezza ±2 px.
 - State/Questions headers allineati.
-- `Learn to GoTraxx` occupa la stessa gerarchia e baseline.
+- `Ask Aida` occupa la stessa gerarchia e baseline.
 - 3 walkthrough cards di uguale larghezza.
 - real-life rows separati da hairline.
 - model selector/Run aderenti al footer.
@@ -1381,7 +1381,7 @@ Principi confermati dalle fonti ufficiali:
 [ ] Primitive picker Noul/Score/Choice identico
 [ ] Add Question dropdown
 [ ] Bottom model selector + Run
-[ ] Learn to GoTraxx rail con 3 lessons + 3 real-life use cases
+[ ] Ask Aida rail con 3 lessons + 3 real-life use cases
 [ ] Response structured/raw
 [ ] Noul probability track + expansion criteria
 [ ] Choice probabilities + confidence

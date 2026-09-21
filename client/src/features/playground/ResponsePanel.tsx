@@ -4,13 +4,16 @@ import { usePlaygroundStore } from '../../stores/playgroundStore';
 import type { Answer, NoulAnswer, ChoiceAnswer, ScoreAnswer } from '../../types';
 import './response.css';
 
-function formatRel(meta: { runAt: string }): string {
-  const diff = Date.now() - new Date(meta.runAt).getTime();
-  const secs = Math.max(0, Math.round(diff / 1000));
-  if (secs < 60) return 'Ran just now';
-  const mins = Math.round(secs / 60);
-  if (mins === 1) return 'Ran 1m ago';
-  return `Ran ${mins}m ago`;
+function formatMs(ms: number): string {
+  if (ms < 1000) return `${Math.round(ms)}ms`;
+  return `${(ms / 1000).toFixed(2)}s`;
+}
+
+function formatRun(meta: { roundTripMs: number; providerMs?: number; overheadMs: number }): string {
+  const parts = [`${formatMs(meta.roundTripMs)} total`];
+  if (typeof meta.providerMs === 'number') parts.push(`${formatMs(meta.providerMs)} provider`);
+  if (typeof meta.overheadMs === 'number') parts.push(`${formatMs(meta.overheadMs)} overhead`);
+  return parts.join(' · ');
 }
 
 export function ResponsePanel() {
@@ -29,7 +32,7 @@ export function ResponsePanel() {
     <div className="response">
       <div className="response-head">
         <div className="response-title">
-          Response <span className="dot">·</span> {formatRel(meta)}
+          Response <span className="dot">·</span> {formatRun(meta)}
         </div>
         <div className="response-actions">
           <button

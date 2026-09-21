@@ -8,7 +8,7 @@ export type ValidationIssue = {
 };
 
 const DEFAULT_STATE_VALUE: Record<string, unknown> = {
-  example_state: 'Add context for GoTraxx to evaluate',
+  message: 'Add context for GoTraxx to evaluate',
 };
 
 const DEFAULT_QUESTIONS_VALUE: Record<string, Question> = {};
@@ -26,7 +26,8 @@ export interface PlaygroundState {
   questionsValue: Record<string, Question>;
   lastValidQuestions: Record<string, Question>;
 
-  requestView: 'structured' | 'json';
+  stateView: 'structured' | 'json';
+  questionsView: 'structured' | 'json';
   responseView: 'structured' | 'json';
 
   workspaceLayout: 'default' | 'alternate';
@@ -47,7 +48,8 @@ export interface PlaygroundState {
   setStateValue: (value: unknown) => void;
   setQuestionsText: (text: string) => void;
   setQuestionsValue: (value: Record<string, Question>) => void;
-  setRequestView: (v: 'structured' | 'json') => void;
+  setStateView: (v: 'structured' | 'json') => void;
+  setQuestionsView: (v: 'structured' | 'json') => void;
   setResponseView: (v: 'structured' | 'json') => void;
   setWorkspaceLayout: (v: 'default' | 'alternate') => void;
   setSelectedModels: (models: string[]) => void;
@@ -61,6 +63,7 @@ export interface PlaygroundState {
   loadPreset: (state: unknown, questions: Record<string, Question>) => void;
   addQuestion: (key: string, q: Question) => void;
   removeQuestion: (key: string) => void;
+  replaceQuestions: (questions: Record<string, Question>) => void;
 }
 
 export const usePlaygroundStore = create<PlaygroundState>((set, get) => ({
@@ -72,7 +75,8 @@ export const usePlaygroundStore = create<PlaygroundState>((set, get) => ({
   questionsValue: DEFAULT_QUESTIONS_VALUE,
   lastValidQuestions: DEFAULT_QUESTIONS_VALUE,
 
-  requestView: 'structured',
+  stateView: 'structured',
+  questionsView: 'structured',
   responseView: 'structured',
 
   workspaceLayout: 'default',
@@ -114,8 +118,12 @@ export const usePlaygroundStore = create<PlaygroundState>((set, get) => ({
     set({ questionsValue: value, lastValidQuestions: value, questionsText: serialize(value) });
   },
 
-  setRequestView(v) {
-    set({ requestView: v });
+  setStateView(v) {
+    set({ stateView: v });
+  },
+
+  setQuestionsView(v) {
+    set({ questionsView: v });
   },
 
   setResponseView(v) {
@@ -198,5 +206,14 @@ export const usePlaygroundStore = create<PlaygroundState>((set, get) => ({
     const questions = { ...get().questionsValue };
     delete questions[key];
     set({ questionsValue: questions, lastValidQuestions: questions, questionsText: serialize(questions) });
+  },
+
+  replaceQuestions(questions) {
+    set({
+      questionsValue: questions,
+      lastValidQuestions: questions,
+      questionsText: serialize(questions),
+      validationIssues: [],
+    });
   },
 }));
