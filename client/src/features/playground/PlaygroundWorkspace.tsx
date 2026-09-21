@@ -1,4 +1,5 @@
 import { usePlaygroundStore } from '../../stores/playgroundStore';
+import { PlaygroundTopbar } from './PlaygroundTopbar';
 import { StatePanel } from './StatePanel';
 import { QuestionsPanel } from './QuestionsPanel';
 import { PlaygroundFooter } from './PlaygroundFooter';
@@ -10,8 +11,11 @@ export function PlaygroundWorkspace() {
   return (
     <div className={`playground-workspace${workspaceLayout === 'alternate' ? ' alternate' : ''}`}>
       <div className="request-pane">
-        <StatePanel />
-        <QuestionsPanel />
+        <PlaygroundTopbar />
+        <div className={`request-panels${workspaceLayout === 'alternate' ? ' alternate' : ''}`}>
+          <StatePanel />
+          <QuestionsPanel />
+        </div>
         <PlaygroundFooter />
       </div>
       <RightRail />

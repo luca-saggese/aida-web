@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 12px 20px 24px;
+  padding: 16px 10px 16px 18px;
 }
 
 .brand {
@@ -34,9 +34,9 @@
 }
 
 .brand-name {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   color: var(--text);
 }
 
@@ -58,19 +58,19 @@
 .nav {
   display: flex;
   flex-direction: column;
-  padding: 4px 12px;
-  gap: 1px;
+  padding: 4px 10px;
+  gap: 2px;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  height: 46px;
-  padding: 0 12px;
+  gap: 11px;
+  height: 38px;
+  padding: 0 10px;
   border-radius: 8px;
   color: var(--text-2);
-  font-size: 20px;
+  font-size: 14px;
   transition: background 0.1s ease;
 }
 
@@ -94,7 +94,7 @@
 
 .sidebar-footer {
   margin-top: auto;
-  padding: 16px 12px;
+  padding: 12px 10px;
   border-top: 1px solid var(--border-soft);
 }
 
@@ -139,7 +139,7 @@
 }
 
 .account-name {
-  font-size: 15px;
+  font-size: 13px;
   color: var(--text);
   font-weight: 500;
 }
@@ -151,6 +151,10 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.account-row {
+  font-size: 13px;
 }
 
 .account-chevron {

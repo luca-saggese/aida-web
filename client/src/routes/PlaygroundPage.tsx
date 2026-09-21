@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { PlaygroundTopbar } from '../features/playground/PlaygroundTopbar';
 import { PlaygroundWorkspace } from '../features/playground/PlaygroundWorkspace';
 import { usePlaygroundStore } from '../stores/playgroundStore';
 import { api } from '../lib/api';
@@ -36,7 +35,6 @@ export function PlaygroundPage() {
 
   return (
     <div className="playground-page">
-      <PlaygroundTopbar />
       <PlaygroundWorkspace />
     </div>
   );
