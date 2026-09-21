@@ -1,0 +1,137 @@
+.rail {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 44px 24px;
+  min-height: 0;
+  overflow: auto;
+}
+
+.rail-hero {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.rail-hero-label {
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.rail-hero-title {
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--text);
+  max-width: 560px;
+}
+
+.rail-hero-close {
+  position: absolute;
+  top: -24px;
+  right: -24px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  color: var(--muted-2);
+  border-radius: 8px;
+}
+
+.rail-hero-close:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.rail-section-label {
+  font-size: 13px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.lesson-cards {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.lesson-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 18px;
+  text-align: left;
+  border-right: 1px solid var(--border);
+  background: transparent;
+}
+
+.lesson-card:last-child {
+  border-right: 0;
+}
+
+.lesson-card:hover {
+  background: var(--surface-hover);
+}
+
+.lesson-badge {
+  align-self: flex-end;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--button-dark);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.lesson-emoji {
+  font-size: 44px;
+  margin-top: 8px;
+  filter: grayscale(0.2);
+}
+
+.lesson-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text);
+  margin-top: 6px;
+}
+
+.lesson-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.real-cases {
+  border-top: 1px solid var(--border);
+}
+
+.real-case {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-soft);
+  background: transparent;
+}
+
+.real-case.selected {
+  background: var(--surface-hover);
+}
+
+.real-case-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.real-case-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+}

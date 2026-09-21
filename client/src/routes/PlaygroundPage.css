@@ -1,0 +1,5 @@
+.playground-page {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: var(--topbar-height) minmax(0, 1fr);
+}

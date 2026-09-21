@@ -1,0 +1,11 @@
+node_modules/
+dist/
+build/
+coverage/
+.env
+*.local
+.DS_Store
+server/data/
+e2e/screenshots/
+e2e/results/
+playwright-report/
