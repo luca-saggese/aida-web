@@ -33,7 +33,7 @@ const questionSchema = z.union([
 
 export const systemOneRequestSchema = z.object({
   state: z.unknown().default({}),
-  model: z.string().min(1).default('aida-latest'),
+  model: z.string().min(1).default('laya'),
   questions: z
     .record(z.string(), questionSchema)
     .refine((val) => Object.keys(val).length > 0, { message: 'At least one question is required' }),

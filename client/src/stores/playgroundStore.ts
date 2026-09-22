@@ -82,7 +82,7 @@ export const usePlaygroundStore = create<PlaygroundState>((set, get) => ({
 
   workspaceLayout: 'default',
 
-  selectedModels: ['aida-latest'],
+  selectedModels: ['laya'],
 
   validationIssues: [],
 

@@ -8,8 +8,9 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(4000),
   CLIENT_URL: z.string().default('http://localhost:5173'),
   MONGODB_URI: z.string().default('mongodb://localhost:27017/gotraxx-clone'),
-  GOTRAXX_API_KEY: z.string().optional().default(''),
-  GOTRAXX_API_BASE_URL: z.string().default('https://api.gotraxx.ai'),
+  INFERENCE_API_URL: z.string().url().default('http://work.gotraxx.com:8082/v1/systemone'),
+  INFERENCE_API_KEY: z.string().optional().default(''),
+  INFERENCE_API_TIMEOUT_MS: z.coerce.number().int().positive().default(30_000),
   API_KEY_PEPPER: z.string().default('change-me-to-a-long-random-string'),
   MOCK_GOTRAXX: z
     .string()
@@ -56,5 +57,5 @@ function resolveEnv(): z.infer<typeof envSchema> {
 export const env = resolveEnv();
 
 export function isMockMode(): boolean {
-  return env.MOCK_GOTRAXX === true || (env.NODE_ENV !== 'production' && !env.GOTRAXX_API_KEY);
+  return env.MOCK_GOTRAXX === true;
 }

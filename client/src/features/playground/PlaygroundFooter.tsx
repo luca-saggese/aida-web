@@ -3,7 +3,7 @@ import { usePlaygroundStore } from '../../stores/playgroundStore';
 import { jsonIsValid } from './validation';
 import { api, ApiError } from '../../lib/api';
 
-const AVAILABLE_MODELS = ['aida-latest', 'aida-preview', 'aida-1.13.0'];
+const AVAILABLE_MODELS = ['laya'];
 
 export function PlaygroundFooter() {
   const selectedModels = usePlaygroundStore((s) => s.selectedModels);
@@ -31,7 +31,7 @@ export function PlaygroundFooter() {
       const res = await api.evaluate({
         state: stateValue,
         questions: questionsValue,
-        model: selectedModels[0] ?? 'aida-latest',
+        model: selectedModels[0] ?? 'laya',
       });
       setResponse(res);
     } catch (err) {
@@ -46,7 +46,7 @@ export function PlaygroundFooter() {
       </button>
       <select
         className="model-select"
-        value={selectedModels[0] ?? 'aida-latest'}
+        value={selectedModels[0] ?? 'laya'}
         aria-label="Model"
         onChange={(e) => setSelectedModels([e.target.value])}
       >
