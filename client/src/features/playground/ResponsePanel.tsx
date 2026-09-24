@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import { List, Code2, PanelRightOpen, ChevronDown, ChevronRight, CircleHelp } from 'lucide-react';
+import { useState, type ReactNode } from 'react';
+import { List, Code2, PanelRightOpen, ChevronDown, ChevronRight, CircleHelp, Copy, Check } from 'lucide-react';
 import { usePlaygroundStore } from '../../stores/playgroundStore';
 import type { Answer, NoulAnswer, ChoiceAnswer, ScoreAnswer } from '../../types';
 import './response.css';
@@ -23,10 +23,17 @@ export function ResponsePanel() {
   const expanded = usePlaygroundStore((s) => s.expandedAnswerIds);
   const toggleExpanded = usePlaygroundStore((s) => s.toggleExpanded);
   const questionsValue = usePlaygroundStore((s) => s.questionsValue);
+  const [copied, setCopied] = useState(false);
 
   if (!response) return null;
   const { provider, meta } = response;
   const entries = Object.entries(provider.answers ?? {});
+
+  const handleCopyRaw = async () => {
+    await navigator.clipboard.writeText(JSON.stringify(provider, null, 2));
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1500);
+  };
 
   return (
     <div className="response">
@@ -59,6 +66,14 @@ export function ResponsePanel() {
 
       {responseView === 'json' ? (
         <div className="response-raw">
+          <button
+            className="raw-copy-btn"
+            onClick={handleCopyRaw}
+            aria-label="Copy raw response"
+            title="Copy raw response"
+          >
+            {copied ? <Check size={16} strokeWidth={1.8} /> : <Copy size={16} strokeWidth={1.8} />}
+          </button>
           <pre>{JSON.stringify(provider, null, 2)}</pre>
         </div>
       ) : (
@@ -75,8 +90,15 @@ export function ResponsePanel() {
           </div>
           {entries.map(([key, answer]) => {
             const isExpanded = expanded.has(key);
+            const question = questionsValue[key];
+            const instruction =
+              question && typeof question.instructions === 'string' && question.instructions.trim()
+                ? question.instructions
+                : key;
             const QuestionLabel = () => (
-              <span className="q-monolabel">{key}</span>
+              <span className="q-monolabel" title={key}>
+                {instruction}
+              </span>
             );
             return (
               <div key={key} className={`resp-row${isExpanded ? ' expanded' : ''}`}>
