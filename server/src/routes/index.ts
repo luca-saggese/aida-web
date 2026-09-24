@@ -9,6 +9,7 @@ import * as apiKeysController from '../controllers/apiKeysController.js';
 import * as usageController from '../controllers/usageController.js';
 import * as shareController from '../controllers/shareController.js';
 import * as publicApiController from '../controllers/publicApiController.js';
+import { listInferenceModels } from '../services/aidaProvider.js';
 
 export const appRouter = Router();
 
@@ -28,6 +29,9 @@ appRouter.get('/session', requireAuth, asyncHandler(sessionController.getSession
 appRouter.get('/auth/me', requireAuth, asyncHandler(authController.me));
 
 appRouter.post('/evaluate', requireAuth, asyncHandler(evaluateController.evaluate));
+appRouter.get('/inference/models', requireAuth, asyncHandler(async (_req, res) => {
+	res.json({ models: await listInferenceModels() });
+}));
 
 appRouter.get('/api-keys', requireAuth, asyncHandler(apiKeysController.list));
 appRouter.post('/api-keys', requireAuth, asyncHandler(apiKeysController.create));

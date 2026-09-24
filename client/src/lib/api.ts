@@ -100,6 +100,7 @@ export const api = {
   // Playground
   evaluate: (payload: { state: unknown; questions: unknown; model: string }) =>
     request<EvaluateResponse>('/api/evaluate', { method: 'POST', body: JSON.stringify(payload) }),
+  getInferenceModels: () => request<{ models: string[] }>('/api/inference/models'),
 
   createShare: (payload: { state: unknown; questions: unknown; selectedModels: string[]; layout: string }) =>
     request<{ shareId: string; url: string }>('/api/shares', {

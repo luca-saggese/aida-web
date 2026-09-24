@@ -217,6 +217,27 @@
   padding: 0 16px;
 }
 
+.run-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: min(60%, 620px);
+  color: #a52d2d;
+  font-size: 12px;
+}
+
+.run-error strong {
+  flex: 0 0 auto;
+  font-weight: 600;
+}
+
+.run-error span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .add-model-btn {
   width: 44px;
   height: 44px;

@@ -9,6 +9,7 @@ const envSchema = z.object({
   CLIENT_URL: z.string().default('http://localhost:5173'),
   MONGODB_URI: z.string().default('mongodb://localhost:27017/gotraxx-clone'),
   INFERENCE_API_URL: z.string().url().default('http://work.gotraxx.com:8082/v1/systemone'),
+  INFERENCE_API_MODELS_URL: z.string().url().default('http://work.gotraxx.com:8082/v1/models'),
   INFERENCE_API_KEY: z.string().optional().default(''),
   INFERENCE_API_TIMEOUT_MS: z.coerce.number().int().positive().default(30_000),
   API_KEY_PEPPER: z.string().default('change-me-to-a-long-random-string'),

@@ -13,6 +13,7 @@ import { RegisterPage } from '../features/auth/RegisterPage';
 import { ConfirmEmailPage } from '../features/auth/ConfirmEmailPage';
 import { ForgotPasswordPage } from '../features/auth/ForgotPasswordPage';
 import { ResetPasswordPage } from '../features/auth/ResetPasswordPage';
+import { ToastHost } from '../components/ToastHost';
 
 function Protected({ children }: { children: React.ReactNode }) {
   const status = useAuthStore((s) => s.status);
@@ -30,7 +31,9 @@ export function App() {
   }, [loadSession]);
 
   return (
-    <Routes>
+    <>
+      <ToastHost />
+      <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/confirm-email" element={<ConfirmEmailPage />} />
@@ -54,6 +57,7 @@ export function App() {
       </Route>
 
       <Route path="*" element={<Navigate to={status === 'authenticated' ? '/' : '/login'} replace />} />
-    </Routes>
+      </Routes>
+    </>
   );
 }

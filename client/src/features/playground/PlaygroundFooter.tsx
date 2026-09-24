@@ -1,11 +1,12 @@
+import { useEffect, useState } from 'react';
 import { Plus } from 'lucide-react';
 import { usePlaygroundStore } from '../../stores/playgroundStore';
 import { jsonIsValid } from './validation';
 import { api, ApiError } from '../../lib/api';
-
-const AVAILABLE_MODELS = ['laya'];
+import { showErrorToast } from '../../components/ToastHost';
 
 export function PlaygroundFooter() {
+  const [availableModels, setAvailableModels] = useState<string[]>([]);
   const selectedModels = usePlaygroundStore((s) => s.selectedModels);
   const setSelectedModels = usePlaygroundStore((s) => s.setSelectedModels);
   const stateText = usePlaygroundStore((s) => s.stateText);
@@ -16,6 +17,23 @@ export function PlaygroundFooter() {
   const setRunning = usePlaygroundStore((s) => s.setRunning);
   const setResponse = usePlaygroundStore((s) => s.setResponse);
   const setRunError = usePlaygroundStore((s) => s.setRunError);
+
+  useEffect(() => {
+    let active = true;
+    void api.getInferenceModels()
+      .then(({ models }) => {
+        if (!active) return;
+        setAvailableModels(models);
+        if (models.length > 0 && !models.includes(selectedModels[0] ?? '')) {
+          setSelectedModels([models[0]]);
+        }
+      })
+      .catch((err: unknown) => {
+        if (!active) return;
+        showErrorToast(err instanceof ApiError ? err.message : 'Unable to load models');
+      });
+    return () => { active = false; };
+  }, [setSelectedModels]);
 
   const stateValid = jsonIsValid(stateText);
   const questionsValid = jsonIsValid(usePlaygroundStore.getState().questionsText);
@@ -31,11 +49,13 @@ export function PlaygroundFooter() {
       const res = await api.evaluate({
         state: stateValue,
         questions: questionsValue,
-        model: selectedModels[0] ?? 'laya',
+        model: selectedModels[0] ?? availableModels[0] ?? '',
       });
       setResponse(res);
     } catch (err) {
-      setRunError(err instanceof ApiError ? err.message : 'Evaluation failed');
+      const message = err instanceof ApiError ? err.message : 'Evaluation failed';
+      setRunError(message);
+      showErrorToast(message);
     }
   };
 
@@ -46,11 +66,12 @@ export function PlaygroundFooter() {
       </button>
       <select
         className="model-select"
-        value={selectedModels[0] ?? 'laya'}
+        value={selectedModels[0] ?? availableModels[0] ?? ''}
         aria-label="Model"
+        disabled={availableModels.length === 0}
         onChange={(e) => setSelectedModels([e.target.value])}
       >
-        {AVAILABLE_MODELS.map((m) => (
+        {availableModels.map((m) => (
           <option key={m} value={m}>
             {m}
           </option>
