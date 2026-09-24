@@ -108,7 +108,7 @@ export async function callGoTraxxProvider(request: SystemOneRequest): Promise<Pr
 
   const providerMs = Date.now() - startedAt;
   const body = (await res.json().catch(() => null)) as SystemOneResponse | null;
-
+console.log('Inference server response body:', JSON.stringify(body,null,4));
   if (!res.ok || !body) {
     const details = body ? [{ status: res.status }] : [];
     // eslint-disable-next-line no-console
